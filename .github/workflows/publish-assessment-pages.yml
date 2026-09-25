@@ -1,8 +1,7 @@
 name: Publish approved AES assessment
 
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches: [main]
     paths:
       - assessments/fablecart/assessment.json
@@ -16,14 +15,12 @@ concurrency:
 
 jobs:
   build:
-    if: github.event.pull_request.merged == true && vars.PUBLISH_AES_REPORT == 'true'
+    if: vars.PUBLISH_AES_REPORT == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.base.ref }}
       - uses: actions/setup-dotnet@v6
         with:
           global-json-file: global.json
@@ -36,7 +33,7 @@ jobs:
           path: artifacts/site
 
   deploy:
-    if: github.event.pull_request.merged == true && vars.PUBLISH_AES_REPORT == 'true'
+    if: vars.PUBLISH_AES_REPORT == 'true'
     needs: build
     runs-on: ubuntu-latest
     environment:

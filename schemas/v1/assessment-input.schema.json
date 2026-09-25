@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/aes-assessment/schemas/v1/assessment-input.schema.json",
+  "title": "AES assessment normalized input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "assessmentId", "fictional", "organization", "workflow", "assessmentDate", "evidence", "questionnaire"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "assessmentId": { "type": "string", "minLength": 1 },
+    "fictional": { "type": "boolean" },
+    "organization": { "type": "string", "minLength": 1 },
+    "workflow": { "type": "string", "minLength": 1 },
+    "assessmentDate": { "type": "string", "format": "date" },
+    "evidence": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/evidence" }
+    },
+    "questionnaire": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/answer" }
+    }
+  },
+  "$defs": {
+    "status": { "enum": ["observed", "team_reported", "inferred", "unknown"] },
+    "references": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "sourceType", "title", "location", "status", "content", "fictional"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "sourceType": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "location": { "type": "string", "minLength": 1 },
+        "status": { "$ref": "#/$defs/status" },
+        "content": { "type": "string" },
+        "fictional": { "type": "boolean" }
+      }
+    },
+    "answer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "question", "answer", "status", "evidenceReferences"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "question": { "type": "string", "minLength": 1 },
+        "answer": { "type": ["string", "null"] },
+        "status": { "$ref": "#/$defs/status" },
+        "evidenceReferences": { "$ref": "#/$defs/references" }
+      }
+    }
+  }
+}

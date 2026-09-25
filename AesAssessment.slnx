@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AesAssessment.Cli/AesAssessment.Cli.csproj" />
+    <Project Path="src/AesAssessment.Core/AesAssessment.Core.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AesAssessment.Tests/AesAssessment.Tests.csproj" />
+  </Folder>
+</Solution>

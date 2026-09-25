@@ -1,0 +1,58 @@
+[
+  {
+    "id": "q-customer-outcome",
+    "question": "What customer outcome should this workflow improve?",
+    "answer": "Reduce avoidable pickup promises that store staff cannot fulfil; no baseline or target has been agreed.",
+    "status": "team_reported",
+    "evidenceReferences": []
+  },
+  {
+    "id": "q-boundaries",
+    "question": "Where does the workflow start and stop?",
+    "answer": "Starts with a support report and stops after a reviewed change is released and the reporter is updated.",
+    "status": "team_reported",
+    "evidenceReferences": ["issue-101"]
+  },
+  {
+    "id": "q-decision-owners",
+    "question": "Who owns prioritization, implementation approval and release decisions?",
+    "answer": "The product engineer prioritizes; a code owner approves; the release workflow deploys after approval.",
+    "status": "team_reported",
+    "evidenceReferences": ["repo-availability-policy"]
+  },
+  {
+    "id": "q-agent-actions",
+    "question": "What may an agent do without additional approval?",
+    "answer": "Read the fixture, draft analysis, suggest tests and open a report pull request. It may not merge, deploy, change permissions or contact shoppers.",
+    "status": "team_reported",
+    "evidenceReferences": []
+  },
+  {
+    "id": "q-escalation",
+    "question": "When and to whom should ambiguity or risk be escalated?",
+    "answer": "Escalate unclear inventory semantics or customer-impact claims to the product engineer before proposing code.",
+    "status": "team_reported",
+    "evidenceReferences": []
+  },
+  {
+    "id": "q-repositories",
+    "question": "Which repositories and systems are relevant?",
+    "answer": "This demonstration repository only. The production inventory service repository would require separately approved access.",
+    "status": "team_reported",
+    "evidenceReferences": []
+  },
+  {
+    "id": "q-verification",
+    "question": "How is a change verified before release?",
+    "answer": "Unit scenarios and code-owner review are required. End-to-end freshness verification is unknown.",
+    "status": "team_reported",
+    "evidenceReferences": ["repo-verification"]
+  },
+  {
+    "id": "q-post-release",
+    "question": "Which post-release signals are reviewed?",
+    "answer": null,
+    "status": "unknown",
+    "evidenceReferences": []
+  }
+]

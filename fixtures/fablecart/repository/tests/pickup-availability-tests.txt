@@ -1,0 +1,9 @@
+FICTIONAL repository evidence
+
+Scenario: available-to-promise is 0
+Expected: pickup option is hidden
+
+Scenario: available-to-promise is 1
+Expected: pickup option is shown
+
+No end-to-end store inventory freshness test is represented in this fixture.

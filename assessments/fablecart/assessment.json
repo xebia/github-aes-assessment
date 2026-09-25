@@ -1,0 +1,277 @@
+{
+  "schemaVersion": "1.0.0",
+  "assessmentId": "fablecart-pickup-availability-2026-09",
+  "fictional": true,
+  "organization": "FableCart Retail (fictional)",
+  "workflow": "Respond to false store-pickup availability reports",
+  "assessmentDate": "2026-09-25",
+  "workflowMap": [
+    {
+      "activity": "define",
+      "description": "Triage the support report, clarify the pickup rule and agree the intended outcome and task boundary.",
+      "director": "Product engineer",
+      "performer": "Product engineer with agent-assisted evidence summary",
+      "assessor": "Product engineer; customer-outcome owner remains unconfirmed",
+      "evidenceReferences": ["issue-101", "repo-availability-policy", "q-boundaries", "q-decision-owners"],
+      "status": "team_reported"
+    },
+    {
+      "activity": "deliver",
+      "description": "Propose a reviewed change and verification scenarios; release only through the existing approved workflow.",
+      "director": "Product engineer",
+      "performer": "Engineer; agent may draft analysis and tests but may not merge or deploy",
+      "assessor": "Code owner",
+      "evidenceReferences": ["repo-availability-policy", "repo-verification", "q-agent-actions", "q-verification"],
+      "status": "team_reported"
+    },
+    {
+      "activity": "detect",
+      "description": "Review post-release signals for false pickup promises.",
+      "director": "unknown",
+      "performer": "unknown",
+      "assessor": "unknown",
+      "evidenceReferences": ["q-post-release"],
+      "status": "unknown"
+    }
+  ],
+  "findings": [
+    {
+      "id": "finding-governance-review",
+      "claim": "The documented delivery path requires a pull request and code-owner approval before release.",
+      "aesCategory": { "kind": "stock", "name": "governance" },
+      "evidenceReferences": ["repo-availability-policy"],
+      "evidenceStatus": "observed",
+      "confidence": "high",
+      "confirmationQuestion": null
+    },
+    {
+      "id": "finding-shared-rule",
+      "claim": "The pickup eligibility rule is documented and represented by two unit-level scenarios.",
+      "aesCategory": { "kind": "stock", "name": "shared_knowledge" },
+      "evidenceReferences": ["agentrc-readiness", "repo-availability-policy", "repo-verification"],
+      "evidenceStatus": "observed",
+      "confidence": "high",
+      "confirmationQuestion": null
+    },
+    {
+      "id": "finding-customer-value",
+      "claim": "The team describes the desired customer outcome as reducing pickup promises that stores cannot fulfil, but no baseline or target is established.",
+      "aesCategory": { "kind": "stock", "name": "customer_value" },
+      "evidenceReferences": ["q-customer-outcome"],
+      "evidenceStatus": "team_reported",
+      "confidence": "medium",
+      "confirmationQuestion": "Who owns this outcome, and what baseline and target would demonstrate improvement?"
+    },
+    {
+      "id": "finding-define-boundary",
+      "claim": "The reported workflow boundary runs from a support report through reviewed release and an update to the reporter.",
+      "aesCategory": { "kind": "activity", "name": "define" },
+      "evidenceReferences": ["q-boundaries", "issue-101"],
+      "evidenceStatus": "team_reported",
+      "confidence": "medium",
+      "confirmationQuestion": "Does incident escalation belong inside this workflow boundary?"
+    },
+    {
+      "id": "finding-performer-boundary",
+      "claim": "An agent may summarize evidence and draft suggestions, while merge, deployment, permission changes and customer contact remain prohibited.",
+      "aesCategory": { "kind": "participation", "name": "performer" },
+      "evidenceReferences": ["q-agent-actions"],
+      "evidenceStatus": "team_reported",
+      "confidence": "medium",
+      "confirmationQuestion": null
+    },
+    {
+      "id": "finding-detect-ownership",
+      "claim": "Ownership and operation of post-release detection are not established by the available evidence.",
+      "aesCategory": { "kind": "activity", "name": "detect" },
+      "evidenceReferences": ["q-post-release"],
+      "evidenceStatus": "unknown",
+      "confidence": "not_assessed",
+      "confirmationQuestion": "Which signals are checked after release, by whom, and for how long?"
+    }
+  ],
+  "unknowns": [
+    {
+      "topic": "Inventory freshness",
+      "reason": "The repository fixture describes the eligibility rule but does not establish freshness expectations or the behavior of the production inventory service.",
+      "confirmationQuestion": "What freshness contract applies to available-to-promise data, and where is it verified?",
+      "evidenceReferences": ["repo-availability-policy", "repo-verification"]
+    },
+    {
+      "topic": "Post-release outcomes",
+      "reason": "No post-release signal, baseline, defect rate or customer outcome measurement was supplied.",
+      "confirmationQuestion": "Which operational and customer signals should be observed after a pilot release?",
+      "evidenceReferences": ["q-post-release", "q-customer-outcome"]
+    },
+    {
+      "topic": "Cross-repository implementation context",
+      "reason": "The demonstration is limited to one repository and has no approved access to an inventory service repository.",
+      "confirmationQuestion": "Which additional repository is required, and who can approve read access?",
+      "evidenceReferences": ["q-repositories"]
+    }
+  ],
+  "proposedPilot": {
+    "scope": "For one fictional pickup-availability report, let an agent prepare an evidence-cited triage summary and suggest missing verification scenarios in a pull request. A human decides whether any product-code work should follow.",
+    "allowedActions": [
+      "Read the normalized assessment input",
+      "Draft the define-deliver-detect map",
+      "Propose verification scenarios",
+      "Open or update an assessment report pull request"
+    ],
+    "prohibitedActions": [
+      "Merge pull requests",
+      "Modify product code or repository permissions",
+      "Deploy or publish the assessment directly",
+      "Contact shoppers or store staff",
+      "Claim unmeasured customer or delivery outcomes"
+    ],
+    "humanGates": [
+      "Product engineer confirms task boundary and desired outcome",
+      "Code owner reviews the assessment pull request",
+      "Repository maintainer merges the approved report before Pages deployment"
+    ],
+    "evidenceReferences": ["q-agent-actions", "q-escalation", "repo-availability-policy"]
+  },
+  "measures": [
+    {
+      "name": "False pickup promise reports",
+      "status": "not_measured",
+      "value": null,
+      "measurementNeeded": "Define a reporting window, deduplication rule, baseline and post-release comparison.",
+      "evidenceReferences": ["issue-101", "issue-104", "q-customer-outcome"]
+    },
+    {
+      "name": "Inventory freshness at decision time",
+      "status": "not_measured",
+      "value": null,
+      "measurementNeeded": "Capture inventory event time, storefront decision time and the agreed freshness threshold.",
+      "evidenceReferences": ["repo-verification"]
+    },
+    {
+      "name": "Review time, agent token cost and defect rate",
+      "status": "not_measured",
+      "value": null,
+      "measurementNeeded": "Instrument the pilot and agree definitions before collecting any values.",
+      "evidenceReferences": []
+    }
+  ],
+  "sourceEvidence": [
+    {
+      "id": "agentrc-readiness",
+      "sourceType": "agentrc_readiness",
+      "title": "AgentRC repository-readiness result (fictional fixture repository)",
+      "location": "fixtures/fablecart/agentrc-readiness.json",
+      "status": "observed",
+      "content": "AgentRC 2.1.0 inspected the fictional repository fixture. Its generic readiness output is retained as raw evidence; it is not an AES score and does not establish workflow behavior or customer value.",
+      "fictional": true
+    },
+    {
+      "id": "issue-101",
+      "sourceType": "issue",
+      "title": "Pickup shown available when store stock is zero",
+      "location": "fixtures/fablecart/issues/issue-101.md",
+      "status": "observed",
+      "content": "FICTIONAL report: pickup was offered for FABLE-MUG-01 at Northwind store, but staff found no stock.",
+      "fictional": true
+    },
+    {
+      "id": "issue-104",
+      "sourceType": "issue",
+      "title": "Second report for same pickup symptom",
+      "location": "fixtures/fablecart/issues/issue-104.md",
+      "status": "observed",
+      "content": "FICTIONAL report: pickup remained visible after the last unit was reserved; timestamps were not supplied.",
+      "fictional": true
+    },
+    {
+      "id": "repo-availability-policy",
+      "sourceType": "repository_documentation",
+      "title": "Pickup availability policy",
+      "location": "fixtures/fablecart/repository/docs/pickup-availability.md",
+      "status": "observed",
+      "content": "Pickup requires available-to-promise greater than zero. Changes require a pull request and code-owner approval.",
+      "fictional": true
+    },
+    {
+      "id": "repo-verification",
+      "sourceType": "repository_test",
+      "title": "Availability verification fixture",
+      "location": "fixtures/fablecart/repository/tests/pickup-availability-tests.txt",
+      "status": "observed",
+      "content": "Unit scenarios cover available-to-promise values zero and one; no end-to-end freshness test is represented.",
+      "fictional": true
+    },
+    {
+      "id": "q-customer-outcome",
+      "sourceType": "questionnaire",
+      "title": "Desired customer outcome",
+      "location": "fixtures/fablecart/questionnaire.json",
+      "status": "team_reported",
+      "content": "Reduce avoidable pickup promises that store staff cannot fulfil; no baseline or target has been agreed.",
+      "fictional": true
+    },
+    {
+      "id": "q-boundaries",
+      "sourceType": "questionnaire",
+      "title": "Task boundaries",
+      "location": "fixtures/fablecart/questionnaire.json",
+      "status": "team_reported",
+      "content": "Starts with a support report and stops after a reviewed change is released and the reporter is updated.",
+      "fictional": true
+    },
+    {
+      "id": "q-decision-owners",
+      "sourceType": "questionnaire",
+      "title": "Decision owners",
+      "location": "fixtures/fablecart/questionnaire.json",
+      "status": "team_reported",
+      "content": "Product engineer prioritizes, a code owner approves and the release workflow deploys.",
+      "fictional": true
+    },
+    {
+      "id": "q-agent-actions",
+      "sourceType": "questionnaire",
+      "title": "Allowed agent actions",
+      "location": "fixtures/fablecart/questionnaire.json",
+      "status": "team_reported",
+      "content": "Read fixtures, draft analysis, suggest tests and open a report PR; no merge, deploy, permission change or customer contact.",
+      "fictional": true
+    },
+    {
+      "id": "q-escalation",
+      "sourceType": "questionnaire",
+      "title": "Escalation",
+      "location": "fixtures/fablecart/questionnaire.json",
+      "status": "team_reported",
+      "content": "Escalate unclear inventory semantics or customer-impact claims to the product engineer.",
+      "fictional": true
+    },
+    {
+      "id": "q-repositories",
+      "sourceType": "questionnaire",
+      "title": "Relevant repositories",
+      "location": "fixtures/fablecart/questionnaire.json",
+      "status": "team_reported",
+      "content": "This demonstration repository only; inventory service access requires separate approval.",
+      "fictional": true
+    },
+    {
+      "id": "q-verification",
+      "sourceType": "questionnaire",
+      "title": "Verification",
+      "location": "fixtures/fablecart/questionnaire.json",
+      "status": "team_reported",
+      "content": "Unit scenarios and code-owner review are required; end-to-end freshness verification is unknown.",
+      "fictional": true
+    },
+    {
+      "id": "q-post-release",
+      "sourceType": "questionnaire",
+      "title": "Post-release signals",
+      "location": "fixtures/fablecart/questionnaire.json",
+      "status": "unknown",
+      "content": "No answer supplied.",
+      "fictional": true
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/aes-assessment/schemas/v1/assessment-report.schema.json",
+  "title": "AES assessment report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "assessmentId", "fictional", "organization", "workflow", "assessmentDate", "workflowMap", "findings", "unknowns", "proposedPilot", "measures", "sourceEvidence"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "assessmentId": { "type": "string", "minLength": 1 },
+    "fictional": { "type": "boolean" },
+    "organization": { "type": "string", "minLength": 1 },
+    "workflow": { "type": "string", "minLength": 1 },
+    "assessmentDate": { "type": "string", "format": "date" },
+    "workflowMap": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "$ref": "#/$defs/stage" }
+    },
+    "findings": { "type": "array", "items": { "$ref": "#/$defs/finding" } },
+    "unknowns": { "type": "array", "items": { "$ref": "#/$defs/unknown" } },
+    "proposedPilot": { "$ref": "#/$defs/pilot" },
+    "measures": { "type": "array", "items": { "$ref": "#/$defs/measure" } },
+    "sourceEvidence": { "type": "array", "items": { "$ref": "#/$defs/evidence" } }
+  },
+  "$defs": {
+    "status": { "enum": ["observed", "team_reported", "inferred", "unknown"] },
+    "references": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "sourceType", "title", "location", "status", "content", "fictional"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "sourceType": { "type": "string" },
+        "title": { "type": "string" },
+        "location": { "type": "string" },
+        "status": { "$ref": "#/$defs/status" },
+        "content": { "type": "string" },
+        "fictional": { "type": "boolean" }
+      }
+    },
+    "stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["activity", "description", "director", "performer", "assessor", "evidenceReferences", "status"],
+      "properties": {
+        "activity": { "enum": ["define", "deliver", "detect"] },
+        "description": { "type": "string" },
+        "director": { "type": "string" },
+        "performer": { "type": "string" },
+        "assessor": { "type": "string" },
+        "evidenceReferences": { "$ref": "#/$defs/references" },
+        "status": { "$ref": "#/$defs/status" }
+      }
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "claim", "aesCategory", "evidenceReferences", "evidenceStatus", "confidence", "confirmationQuestion"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "claim": { "type": "string", "minLength": 1 },
+        "aesCategory": { "$ref": "#/$defs/category" },
+        "evidenceReferences": { "$ref": "#/$defs/references" },
+        "evidenceStatus": { "$ref": "#/$defs/status" },
+        "confidence": { "enum": ["high", "medium", "low", "not_assessed"] },
+        "confirmationQuestion": { "type": ["string", "null"] }
+      }
+    },
+    "category": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "name"],
+      "properties": {
+        "kind": { "enum": ["stock", "activity", "participation"] },
+        "name": { "enum": ["governance", "shared_knowledge", "customer_value", "define", "deliver", "detect", "director", "performer", "assessor"] }
+      }
+    },
+    "unknown": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["topic", "reason", "confirmationQuestion", "evidenceReferences"],
+      "properties": {
+        "topic": { "type": "string" },
+        "reason": { "type": "string" },
+        "confirmationQuestion": { "type": "string" },
+        "evidenceReferences": { "$ref": "#/$defs/references" }
+      }
+    },
+    "pilot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scope", "allowedActions", "prohibitedActions", "humanGates", "evidenceReferences"],
+      "properties": {
+        "scope": { "type": "string" },
+        "allowedActions": { "type": "array", "items": { "type": "string" } },
+        "prohibitedActions": { "type": "array", "items": { "type": "string" } },
+        "humanGates": { "type": "array", "items": { "type": "string" } },
+        "evidenceReferences": { "$ref": "#/$defs/references" }
+      }
+    },
+    "measure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "status", "value", "measurementNeeded", "evidenceReferences"],
+      "properties": {
+        "name": { "type": "string" },
+        "status": { "enum": ["measured", "not_measured", "unknown"] },
+        "value": { "type": ["string", "null"] },
+        "measurementNeeded": { "type": "string" },
+        "evidenceReferences": { "$ref": "#/$defs/references" }
+      }
+    }
+  }
+}

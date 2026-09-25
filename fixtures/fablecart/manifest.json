@@ -1,0 +1,43 @@
+{
+  "assessmentId": "fablecart-pickup-availability-2026-09",
+  "fictional": true,
+  "organization": "FableCart Retail (fictional)",
+  "workflow": "Respond to false store-pickup availability reports",
+  "assessmentDate": "2026-09-25",
+  "agentRcFile": "agentrc-readiness.json",
+  "questionnaireFile": "questionnaire.json",
+  "supplementalEvidence": [
+    {
+      "id": "issue-101",
+      "sourceType": "issue",
+      "title": "Pickup shown available when store stock is zero",
+      "location": "fixtures/fablecart/issues/issue-101.md",
+      "status": "observed",
+      "contentFile": "issues/issue-101.md"
+    },
+    {
+      "id": "issue-104",
+      "sourceType": "issue",
+      "title": "Second report for same pickup symptom",
+      "location": "fixtures/fablecart/issues/issue-104.md",
+      "status": "observed",
+      "contentFile": "issues/issue-104.md"
+    },
+    {
+      "id": "repo-availability-policy",
+      "sourceType": "workflow_documentation",
+      "title": "Pickup availability policy",
+      "location": "fixtures/fablecart/repository/docs/pickup-availability.md",
+      "status": "observed",
+      "contentFile": "repository/docs/pickup-availability.md"
+    },
+    {
+      "id": "repo-verification",
+      "sourceType": "workflow_verification",
+      "title": "Availability verification fixture",
+      "location": "fixtures/fablecart/repository/tests/pickup-availability-tests.txt",
+      "status": "observed",
+      "contentFile": "repository/tests/pickup-availability-tests.txt"
+    }
+  ]
+}

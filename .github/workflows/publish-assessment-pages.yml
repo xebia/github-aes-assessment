@@ -1,0 +1,51 @@
+name: Publish approved AES assessment
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+    paths:
+      - assessments/fablecart/assessment.json
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.event.pull_request.merged == true && vars.PUBLISH_AES_REPORT == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+      - run: dotnet test AesAssessment.slnx --configuration Release
+      - run: dotnet run --project src/AesAssessment.Cli --configuration Release -- validate-report assessments/fablecart/assessment.json
+      - run: dotnet run --project src/AesAssessment.Cli --configuration Release -- render assessments/fablecart/assessment.json artifacts/site
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: artifacts/site
+
+  deploy:
+    if: github.event.pull_request.merged == true && vars.PUBLISH_AES_REPORT == 'true'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy approved report
+        id: deployment
+        uses: actions/deploy-pages@v4

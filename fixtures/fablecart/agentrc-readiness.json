@@ -1,0 +1,469 @@
+{
+  "ok": true,
+  "status": "success",
+  "data": {
+    "repoPath": "C:\\Repos\\Xebia\\GitHub AES Assessment\\fixtures\\fablecart\\repository",
+    "generatedAt": "2026-09-25T09:56:45.595Z",
+    "isMonorepo": false,
+    "apps": [],
+    "pillars": [
+      {
+        "id": "style-validation",
+        "name": "Style & Validation",
+        "passed": 0,
+        "total": 2,
+        "passRate": 0
+      },
+      {
+        "id": "build-system",
+        "name": "Build System",
+        "passed": 0,
+        "total": 1,
+        "passRate": 0
+      },
+      {
+        "id": "testing",
+        "name": "Testing",
+        "passed": 0,
+        "total": 0,
+        "passRate": 0
+      },
+      {
+        "id": "documentation",
+        "name": "Documentation",
+        "passed": 0,
+        "total": 2,
+        "passRate": 0
+      },
+      {
+        "id": "dev-environment",
+        "name": "Dev Environment",
+        "passed": 0,
+        "total": 2,
+        "passRate": 0
+      },
+      {
+        "id": "code-quality",
+        "name": "Code Quality",
+        "passed": 0,
+        "total": 1,
+        "passRate": 0
+      },
+      {
+        "id": "observability",
+        "name": "Observability",
+        "passed": 0,
+        "total": 1,
+        "passRate": 0
+      },
+      {
+        "id": "security-governance",
+        "name": "Security & Governance",
+        "passed": 0,
+        "total": 4,
+        "passRate": 0
+      },
+      {
+        "id": "ai-tooling",
+        "name": "AI Tooling",
+        "passed": 0,
+        "total": 5,
+        "passRate": 0
+      }
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "name": "Functional",
+        "passed": 0,
+        "total": 5,
+        "passRate": 0,
+        "achieved": false
+      },
+      {
+        "level": 2,
+        "name": "Documented",
+        "passed": 0,
+        "total": 8,
+        "passRate": 0,
+        "achieved": false
+      },
+      {
+        "level": 3,
+        "name": "Standardized",
+        "passed": 0,
+        "total": 5,
+        "passRate": 0,
+        "achieved": false
+      },
+      {
+        "level": 4,
+        "name": "Optimized",
+        "passed": 0,
+        "total": 0,
+        "passRate": 0,
+        "achieved": false
+      },
+      {
+        "level": 5,
+        "name": "Autonomous",
+        "passed": 0,
+        "total": 0,
+        "passRate": 0,
+        "achieved": false
+      }
+    ],
+    "achievedLevel": 0,
+    "criteria": [
+      {
+        "id": "lint-config",
+        "title": "Linting configured",
+        "pillar": "style-validation",
+        "level": 1,
+        "scope": "repo",
+        "impact": "high",
+        "effort": "low",
+        "status": "fail",
+        "reason": "Missing ESLint/Biome/Prettier configuration.",
+        "evidence": [
+          "eslint.config.js",
+          ".eslintrc",
+          "biome.json",
+          ".prettierrc"
+        ]
+      },
+      {
+        "id": "typecheck-config",
+        "title": "Type checking configured",
+        "pillar": "style-validation",
+        "level": 2,
+        "scope": "repo",
+        "impact": "medium",
+        "effort": "low",
+        "status": "fail",
+        "reason": "Missing type checking config (tsconfig or equivalent).",
+        "evidence": [
+          "tsconfig.json",
+          "tsconfig.base.json",
+          "pyproject.toml",
+          "mypy.ini"
+        ]
+      },
+      {
+        "id": "build-script",
+        "title": "Build script present",
+        "pillar": "build-system",
+        "level": 1,
+        "scope": "app",
+        "impact": "high",
+        "effort": "low",
+        "status": "skip",
+        "reason": "No application packages detected."
+      },
+      {
+        "id": "ci-config",
+        "title": "CI workflow configured",
+        "pillar": "build-system",
+        "level": 2,
+        "scope": "repo",
+        "impact": "high",
+        "effort": "medium",
+        "status": "fail",
+        "reason": "Missing .github/workflows CI configuration.",
+        "evidence": [
+          ".github/workflows"
+        ]
+      },
+      {
+        "id": "test-script",
+        "title": "Test script present",
+        "pillar": "testing",
+        "level": 1,
+        "scope": "app",
+        "impact": "high",
+        "effort": "low",
+        "status": "skip",
+        "reason": "No application packages detected."
+      },
+      {
+        "id": "readme",
+        "title": "README present",
+        "pillar": "documentation",
+        "level": 1,
+        "scope": "repo",
+        "impact": "high",
+        "effort": "low",
+        "status": "fail",
+        "reason": "Missing README documentation.",
+        "evidence": [
+          "README.md"
+        ]
+      },
+      {
+        "id": "contributing",
+        "title": "CONTRIBUTING guide present",
+        "pillar": "documentation",
+        "level": 2,
+        "scope": "repo",
+        "impact": "medium",
+        "effort": "low",
+        "status": "fail",
+        "reason": "Missing CONTRIBUTING.md for contributor workflows."
+      },
+      {
+        "id": "lockfile",
+        "title": "Lockfile present",
+        "pillar": "dev-environment",
+        "level": 1,
+        "scope": "repo",
+        "impact": "high",
+        "effort": "low",
+        "status": "fail",
+        "reason": "Missing package manager lockfile."
+      },
+      {
+        "id": "env-example",
+        "title": "Environment example present",
+        "pillar": "dev-environment",
+        "level": 2,
+        "scope": "repo",
+        "impact": "medium",
+        "effort": "low",
+        "status": "fail",
+        "reason": "Missing .env.example or .env.sample for setup guidance."
+      },
+      {
+        "id": "format-config",
+        "title": "Formatter configured",
+        "pillar": "code-quality",
+        "level": 2,
+        "scope": "repo",
+        "impact": "medium",
+        "effort": "low",
+        "status": "fail",
+        "reason": "Missing Prettier/Biome formatting config."
+      },
+      {
+        "id": "codeowners",
+        "title": "CODEOWNERS present",
+        "pillar": "security-governance",
+        "level": 2,
+        "scope": "repo",
+        "impact": "medium",
+        "effort": "low",
+        "status": "fail",
+        "reason": "Missing CODEOWNERS file."
+      },
+      {
+        "id": "license",
+        "title": "LICENSE present",
+        "pillar": "security-governance",
+        "level": 1,
+        "scope": "repo",
+        "impact": "medium",
+        "effort": "low",
+        "status": "fail",
+        "reason": "Missing LICENSE file."
+      },
+      {
+        "id": "security-policy",
+        "title": "Security policy present",
+        "pillar": "security-governance",
+        "level": 3,
+        "scope": "repo",
+        "impact": "high",
+        "effort": "low",
+        "status": "fail",
+        "reason": "Missing SECURITY.md policy."
+      },
+      {
+        "id": "dependabot",
+        "title": "Dependabot configured",
+        "pillar": "security-governance",
+        "level": 3,
+        "scope": "repo",
+        "impact": "medium",
+        "effort": "medium",
+        "status": "fail",
+        "reason": "Missing .github/dependabot.yml configuration."
+      },
+      {
+        "id": "observability",
+        "title": "Observability tooling present",
+        "pillar": "observability",
+        "level": 3,
+        "scope": "repo",
+        "impact": "medium",
+        "effort": "medium",
+        "status": "fail",
+        "reason": "No observability dependencies detected (OpenTelemetry/logging)."
+      },
+      {
+        "id": "custom-instructions",
+        "title": "Custom instructions or agent guidance",
+        "pillar": "ai-tooling",
+        "level": 1,
+        "scope": "repo",
+        "impact": "high",
+        "effort": "low",
+        "status": "fail",
+        "reason": "Missing custom instructions (e.g. copilot-instructions.md, AGENTS.md, CLAUDE.md, GEMINI.md, or *.instructions.md).",
+        "evidence": [
+          ".github/copilot-instructions.md",
+          "CLAUDE.md",
+          "AGENTS.md",
+          "GEMINI.md",
+          ".github/instructions/*.instructions.md"
+        ]
+      },
+      {
+        "id": "instructions-consistency",
+        "title": "AI instruction files are consistent",
+        "pillar": "ai-tooling",
+        "level": 2,
+        "scope": "repo",
+        "impact": "medium",
+        "effort": "low",
+        "status": "skip",
+        "reason": "Fewer than 2 instruction files found."
+      },
+      {
+        "id": "mcp-config",
+        "title": "MCP configuration present",
+        "pillar": "ai-tooling",
+        "level": 2,
+        "scope": "repo",
+        "impact": "high",
+        "effort": "low",
+        "status": "fail",
+        "reason": "Missing MCP (Model Context Protocol) configuration (e.g. .vscode/mcp.json or an Agent Plugin mcp.json).",
+        "evidence": [
+          ".vscode/mcp.json",
+          ".vscode/settings.json (mcp section)",
+          ".mcp.json",
+          ".github/mcp.json",
+          "<agent-plugin>/mcp.json"
+        ]
+      },
+      {
+        "id": "custom-agents",
+        "title": "Custom AI agents configured",
+        "pillar": "ai-tooling",
+        "level": 3,
+        "scope": "repo",
+        "impact": "medium",
+        "effort": "medium",
+        "status": "fail",
+        "reason": "No custom AI agents configured (e.g. .github/agents/, .claude/agents/, or an Agent Plugin agents/ directory).",
+        "evidence": [
+          ".github/agents/",
+          ".claude/agents/",
+          "<agent-plugin>/com.github.copilot/agents/"
+        ]
+      },
+      {
+        "id": "copilot-skills",
+        "title": "AI skills present",
+        "pillar": "ai-tooling",
+        "level": 3,
+        "scope": "repo",
+        "impact": "medium",
+        "effort": "medium",
+        "status": "fail",
+        "reason": "No AI skills found (e.g. .github/skills/, .agents/skills/, .claude/skills/, or an Agent Plugin skills/ directory).",
+        "evidence": [
+          ".github/skills/",
+          ".agents/skills/",
+          ".claude/skills/",
+          "<agent-plugin>/skills/"
+        ]
+      },
+      {
+        "id": "plugin-marketplaces",
+        "title": "Additional Copilot plugin marketplaces configured",
+        "pillar": "ai-tooling",
+        "level": 3,
+        "scope": "repo",
+        "impact": "low",
+        "effort": "low",
+        "status": "skip",
+        "reason": "No repository-scoped extraKnownMarketplaces setting found.",
+        "evidence": []
+      },
+      {
+        "id": "enabled-plugins",
+        "title": "Copilot plugins enabled in repository settings",
+        "pillar": "ai-tooling",
+        "level": 3,
+        "scope": "repo",
+        "impact": "low",
+        "effort": "low",
+        "status": "skip",
+        "reason": "No repository-scoped enabledPlugins setting found.",
+        "evidence": []
+      },
+      {
+        "id": "apm-config",
+        "title": "APM package manifest present",
+        "pillar": "ai-tooling",
+        "level": 2,
+        "scope": "repo",
+        "impact": "medium",
+        "effort": "low",
+        "status": "fail",
+        "reason": "No apm.yml found. Use APM to install shared agent packages and keep instructions in sync across repos. See: https://github.com/microsoft/apm",
+        "evidence": [
+          "apm.yml"
+        ]
+      },
+      {
+        "id": "apm-locked-deps",
+        "title": "APM dependencies locked",
+        "pillar": "ai-tooling",
+        "level": 3,
+        "scope": "repo",
+        "impact": "medium",
+        "effort": "low",
+        "status": "skip",
+        "reason": "No apm.yml found — skipping lockfile check."
+      },
+      {
+        "id": "apm-ci-integration",
+        "title": "APM integrated in CI pipeline",
+        "pillar": "ai-tooling",
+        "level": 4,
+        "scope": "repo",
+        "impact": "high",
+        "effort": "medium",
+        "status": "skip",
+        "reason": "No apm.yml found — skipping CI check."
+      }
+    ],
+    "extras": [
+      {
+        "id": "agents-doc",
+        "title": "AGENTS.md present",
+        "status": "fail",
+        "reason": "Missing AGENTS.md to guide coding agents."
+      },
+      {
+        "id": "pr-template",
+        "title": "Pull request template present",
+        "status": "fail",
+        "reason": "Missing PR template for consistent reviews."
+      },
+      {
+        "id": "pre-commit",
+        "title": "Pre-commit hooks configured",
+        "status": "fail",
+        "reason": "Missing pre-commit or Husky configuration for fast feedback."
+      },
+      {
+        "id": "architecture-doc",
+        "title": "Architecture guide present",
+        "status": "fail",
+        "reason": "Missing architecture documentation."
+      }
+    ]
+  }
+}

@@ -129,7 +129,8 @@
       "Product engineer confirms task boundary and desired outcome",
       "Code owner reviews the assessment pull request",
       "Repository maintainer merges the approved report before Pages deployment",
-      "Repository owner keeps GitHub Pages publication opt-in for the fictional demonstration"
+      "Repository owner keeps GitHub Pages publication opt-in for the fictional demonstration",
+      "Maintainer verifies the deployed static page still labels all sample results as fictional"
     ],
     "evidenceReferences": ["q-agent-actions", "q-escalation", "repo-availability-policy"]
   },
